@@ -1,0 +1,7 @@
+{
+  "sources": [{"name": "azure_telemetry", "type": "AzureEventHub", "properties": {"dataConnectionId": "{{EVENTHUB_CONNECTION_ID}}", "consumerGroupName": "fabric", "inputSerialization": {"type": "Json", "properties": {"encoding": "UTF8"}}}}],
+  "streams": [{"name": "telemetry_stream", "type": "DefaultStream", "properties": {}, "inputNodes": [{"name": "azure_telemetry"}]}],
+  "operators": [],
+  "destinations": [{"name": "lakehouse_raw", "type": "Lakehouse", "properties": {"workspaceId": "{{WORKSPACE_ID}}", "itemId": "{{LAKEHOUSE_ID}}", "schema": "", "deltaTable": "bronze_telemetry", "minimumRows": 1000, "maximumDurationInSeconds": 120, "inputSerialization": {"type": "Json", "properties": {"encoding": "UTF8"}}}, "inputNodes": [{"name": "telemetry_stream"}]}],
+  "compatibilityLevel": "1.0"
+}

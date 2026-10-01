@@ -1,0 +1,15 @@
+{
+  "artifactKind": "authoring-specification-not-PBIR",
+  "name": "Operations Analytics",
+  "semanticModel": "analytics_sales_model",
+  "pages": [
+    {"name": "Sales overview", "visuals": [
+      {"type": "card", "measure": "Revenue USD", "expectedFixtureValue": 359.85},
+      {"type": "card", "measure": "Order Count", "expectedFixtureValue": 3},
+      {"type": "card", "measure": "Average Order Value", "expectedFixtureValue": 119.95},
+      {"type": "lineChart", "axis": "Daily Sales.Date", "measure": "Revenue USD"},
+      {"type": "slicer", "column": "Daily Sales.Date"}
+    ]}
+  ],
+  "publication": "Create against the deployed semantic model in Power BI, then save/export the report as PBIP/PBIR. This JSON is a design contract, not a directly importable report."
+}

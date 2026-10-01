@@ -1,0 +1,566 @@
+{
+  "uniqueLabelCount": 66,
+  "components": [
+    {
+      "label": "AWS Kinesis",
+      "status": "template+binding",
+      "artifacts": [
+        "infra/aws/sources.cloudformation.json",
+        "fabric/connections/catalog.json",
+        "fabric/eventstreams/topology.json"
+      ]
+    },
+    {
+      "label": "Amazon S3",
+      "status": "template+binding",
+      "artifacts": [
+        "infra/aws/sources.cloudformation.json",
+        "fabric/connections/catalog.json",
+        "fabric/eventstreams/topology.json"
+      ]
+    },
+    {
+      "label": "Amazon Web Services",
+      "status": "template+binding",
+      "artifacts": [
+        "infra/aws/sources.cloudformation.json",
+        "fabric/connections/catalog.json",
+        "fabric/eventstreams/topology.json"
+      ]
+    },
+    {
+      "label": "Azure Cosmos DB",
+      "status": "template+binding",
+      "artifacts": [
+        "infra/azure/modules/sources.bicep",
+        "sources/cosmos/orders.json",
+        "fabric/connections/mirroring.md"
+      ]
+    },
+    {
+      "label": "Azure Data Explorer",
+      "status": "template+binding",
+      "artifacts": [
+        "infra/azure/modules/intelligence.bicep",
+        "fabric/kql/003_onelake.md"
+      ]
+    },
+    {
+      "label": "Azure Databricks",
+      "status": "template+binding",
+      "artifacts": [
+        "infra/azure/modules/sources.bicep",
+        "sources/databricks/seed_orders.py",
+        "fabric/connections/mirroring.md"
+      ]
+    },
+    {
+      "label": "Azure Databse for PostgresSQL",
+      "status": "template+binding",
+      "artifacts": [
+        "infra/azure/modules/sources.bicep",
+        "sources/postgresql/schema.sql",
+        "fabric/connections/mirroring.md"
+      ]
+    },
+    {
+      "label": "Azure DevOps",
+      "status": "validation-ci",
+      "artifacts": [
+        "azure-pipelines.yml"
+      ]
+    },
+    {
+      "label": "Azure Event Hubs",
+      "status": "template+binding",
+      "artifacts": [
+        "infra/azure/modules/platform.bicep",
+        "fabric/eventstreams/topology.json",
+        "scripts/stream_producer.py"
+      ]
+    },
+    {
+      "label": "Azure Key Vault",
+      "status": "template+binding",
+      "artifacts": [
+        "infra/azure/modules/platform.bicep",
+        "docs/deployment.md"
+      ]
+    },
+    {
+      "label": "Azure Policy",
+      "status": "template",
+      "artifacts": [
+        "infra/azure/policy.bicep",
+        "infra/azure/modules/policy-assignment.bicep"
+      ]
+    },
+    {
+      "label": "Azure SQL Database",
+      "status": "template+binding",
+      "artifacts": [
+        "infra/azure/modules/sources.bicep",
+        "sources/azure-sql/schema.sql",
+        "fabric/connections/mirroring.md"
+      ]
+    },
+    {
+      "label": "Blob storage",
+      "status": "template+binding",
+      "artifacts": [
+        "infra/azure/modules/platform.bicep",
+        "fabric/connections/shortcuts.md"
+      ]
+    },
+    {
+      "label": "Consumer tenant",
+      "status": "template+configuration",
+      "artifacts": [
+        "fabric/manifests/consumer.json",
+        "fabric/consumer/README.md"
+      ]
+    },
+    {
+      "label": "Copilot",
+      "status": "configuration-contract",
+      "artifacts": [
+        "docs/deployment.md",
+        "ai/data-agent/instructions.md"
+      ]
+    },
+    {
+      "label": "Copilot in Fabric",
+      "status": "configuration-contract",
+      "artifacts": [
+        "docs/deployment.md",
+        "ai/data-agent/instructions.md"
+      ]
+    },
+    {
+      "label": "Cost Management",
+      "status": "template+configuration",
+      "artifacts": [
+        "infra/azure/main.bicep",
+        "monitoring/README.md"
+      ]
+    },
+    {
+      "label": "Cross-tenant OneLake data share",
+      "status": "template+configuration",
+      "artifacts": [
+        "fabric/manifests/consumer.json",
+        "fabric/consumer/README.md"
+      ]
+    },
+    {
+      "label": "Data Engineer",
+      "status": "code+template",
+      "artifacts": [
+        "fabric/notebooks/01_bronze_orders.py",
+        "fabric/notebooks/02_silver_orders.py",
+        "fabric/notebooks/03_gold_sales.py"
+      ]
+    },
+    {
+      "label": "Data Factory",
+      "status": "code+template",
+      "artifacts": [
+        "fabric/definitions/pipelines/orders.json",
+        "fabric/connections/catalog.json"
+      ]
+    },
+    {
+      "label": "Data Lake Storage",
+      "status": "template+binding",
+      "artifacts": [
+        "infra/azure/modules/platform.bicep",
+        "fabric/connections/shortcuts.md"
+      ]
+    },
+    {
+      "label": "Data Science",
+      "status": "code+template",
+      "artifacts": [
+        "ml/train.py",
+        "ml/job.yml",
+        "fabric/notebooks/04_ml_telemetry.py",
+        "ai/foundry/README.md"
+      ]
+    },
+    {
+      "label": "Data Warehouse",
+      "status": "code+template",
+      "artifacts": [
+        "fabric/manifests/provider.json",
+        "fabric/sql/warehouse/001_tables.sql",
+        "fabric/sql/warehouse/002_publish.sql"
+      ]
+    },
+    {
+      "label": "Data agent(preview)",
+      "status": "configuration-contract",
+      "artifacts": [
+        "ai/data-agent/instructions.md",
+        "ai/data-agent/evaluation.json"
+      ]
+    },
+    {
+      "label": "Data source",
+      "status": "fixtures+configuration",
+      "artifacts": [
+        "fabric/connections/catalog.json",
+        "data/sample/orders.jsonl",
+        "data/sample/telemetry.jsonl"
+      ]
+    },
+    {
+      "label": "Databases",
+      "status": "code+template",
+      "artifacts": [
+        "fabric/manifests/provider.json",
+        "fabric/sql/operations/001_tables.sql"
+      ]
+    },
+    {
+      "label": "Dataflow Gen2 in Fabric",
+      "status": "code+binding",
+      "artifacts": [
+        "fabric/dataflows/daily_sales.pq",
+        "fabric/dataflows/README.md"
+      ]
+    },
+    {
+      "label": "Dataverse",
+      "status": "configuration-contract",
+      "artifacts": [
+        "sources/dataverse/README.md"
+      ]
+    },
+    {
+      "label": "Enrich",
+      "status": "code+template",
+      "artifacts": [
+        "ml/train.py",
+        "ml/job.yml",
+        "fabric/notebooks/04_ml_telemetry.py",
+        "ai/foundry/README.md"
+      ]
+    },
+    {
+      "label": "Eventhouse",
+      "status": "code+template",
+      "artifacts": [
+        "fabric/manifests/provider.json",
+        "fabric/kql/001_schema.kql",
+        "fabric/kql/002_dashboard_queries.kql"
+      ]
+    },
+    {
+      "label": "Eventstream",
+      "status": "template+binding",
+      "artifacts": [
+        "fabric/manifests/streaming.json",
+        "fabric/eventstreams/eventstream.json",
+        "fabric/eventstreams/topology.json"
+      ]
+    },
+    {
+      "label": "GitHub",
+      "status": "validation-ci",
+      "artifacts": [
+        ".github/workflows/validate.yml"
+      ]
+    },
+    {
+      "label": "Google Cloud",
+      "status": "template+binding",
+      "artifacts": [
+        "infra/gcp/main.tf",
+        "fabric/connections/catalog.json",
+        "fabric/eventstreams/topology.json"
+      ]
+    },
+    {
+      "label": "Google Cloud Pub/Sub",
+      "status": "template+binding",
+      "artifacts": [
+        "infra/gcp/main.tf",
+        "fabric/connections/catalog.json",
+        "fabric/eventstreams/topology.json"
+      ]
+    },
+    {
+      "label": "Google Cloud Storage",
+      "status": "template+binding",
+      "artifacts": [
+        "infra/gcp/main.tf",
+        "fabric/connections/catalog.json",
+        "fabric/eventstreams/topology.json"
+      ]
+    },
+    {
+      "label": "GraphQL API",
+      "status": "query+configuration-contract",
+      "artifacts": [
+        "fabric/graphql/queries.graphql",
+        "fabric/graphql/README.md"
+      ]
+    },
+    {
+      "label": "Ingest",
+      "status": "code+template",
+      "artifacts": [
+        "fabric/definitions/pipelines/orders.json",
+        "fabric/connections/catalog.json"
+      ]
+    },
+    {
+      "label": "IoT Hub",
+      "status": "template+binding",
+      "artifacts": [
+        "infra/azure/modules/platform.bicep",
+        "fabric/eventstreams/topology.json",
+        "scripts/stream_producer.py"
+      ]
+    },
+    {
+      "label": "Lakehouse",
+      "status": "template+service-managed",
+      "artifacts": [
+        "fabric/manifests/provider.json",
+        "scripts/upload_onelake.py",
+        "docs/architecture.md"
+      ]
+    },
+    {
+      "label": "Machine Learning",
+      "status": "code+template",
+      "artifacts": [
+        "ml/train.py",
+        "ml/job.yml",
+        "fabric/notebooks/04_ml_telemetry.py",
+        "ai/foundry/README.md"
+      ]
+    },
+    {
+      "label": "Microsoft Entra ID",
+      "status": "configuration-contract",
+      "artifacts": [
+        "governance/access-matrix.csv",
+        "docs/deployment.md"
+      ]
+    },
+    {
+      "label": "Microsoft Foundry",
+      "status": "template+configuration",
+      "artifacts": [
+        "infra/azure/modules/intelligence.bicep",
+        "ai/foundry/README.md"
+      ]
+    },
+    {
+      "label": "Microsoft Purview",
+      "status": "template+binding",
+      "artifacts": [
+        "infra/azure/modules/platform.bicep",
+        "governance/purview.md"
+      ]
+    },
+    {
+      "label": "Mirror",
+      "status": "configuration-contract",
+      "artifacts": [
+        "fabric/connections/mirroring.md",
+        "fabric/connections/catalog.json"
+      ]
+    },
+    {
+      "label": "Mirrored database",
+      "status": "configuration-contract",
+      "artifacts": [
+        "fabric/connections/mirroring.md",
+        "fabric/connections/catalog.json"
+      ]
+    },
+    {
+      "label": "Mirroring",
+      "status": "configuration-contract",
+      "artifacts": [
+        "fabric/connections/mirroring.md",
+        "fabric/connections/catalog.json"
+      ]
+    },
+    {
+      "label": "Notebook",
+      "status": "code+template",
+      "artifacts": [
+        "fabric/notebooks/01_bronze_orders.py",
+        "fabric/notebooks/02_silver_orders.py",
+        "fabric/notebooks/03_gold_sales.py"
+      ]
+    },
+    {
+      "label": "On-premises datacenter",
+      "status": "template+binding",
+      "artifacts": [
+        "sources/onprem/compose.yaml",
+        "sources/azure-sql/schema.sql",
+        "fabric/connections/catalog.json"
+      ]
+    },
+    {
+      "label": "OneLake",
+      "status": "template+service-managed",
+      "artifacts": [
+        "fabric/manifests/provider.json",
+        "scripts/upload_onelake.py",
+        "docs/architecture.md"
+      ]
+    },
+    {
+      "label": "Platform",
+      "status": "cross-cutting-design",
+      "artifacts": [
+        "docs/architecture.md",
+        "governance/access-matrix.csv",
+        "docs/deployment.md"
+      ]
+    },
+    {
+      "label": "Power BI",
+      "status": "authoring-contract",
+      "artifacts": [
+        "fabric/reports/report-spec.json",
+        "fabric/reports/theme.json",
+        "fabric/manifests/serving.json"
+      ]
+    },
+    {
+      "label": "Process",
+      "status": "code+template",
+      "artifacts": [
+        "fabric/notebooks/01_bronze_orders.py",
+        "fabric/notebooks/02_silver_orders.py",
+        "fabric/notebooks/03_gold_sales.py"
+      ]
+    },
+    {
+      "label": "Provider tenant",
+      "status": "template+configuration",
+      "artifacts": [
+        "fabric/manifests/provider.json",
+        "docs/deployment.md"
+      ]
+    },
+    {
+      "label": "Real-Time Intelligence",
+      "status": "code+template",
+      "artifacts": [
+        "fabric/manifests/provider.json",
+        "fabric/kql/001_schema.kql",
+        "fabric/kql/002_dashboard_queries.kql"
+      ]
+    },
+    {
+      "label": "Real-Time Intelligence dashboard",
+      "status": "authoring-contract",
+      "artifacts": [
+        "fabric/reports/realtime-dashboard-spec.json",
+        "fabric/kql/002_dashboard_queries.kql"
+      ]
+    },
+    {
+      "label": "SQL analytics endpoint",
+      "status": "service-managed+code",
+      "artifacts": [
+        "fabric/sql/lakehouse/quality_checks.sql",
+        "docs/architecture.md"
+      ]
+    },
+    {
+      "label": "SQL database in Fabric",
+      "status": "code+template",
+      "artifacts": [
+        "fabric/manifests/provider.json",
+        "fabric/sql/operations/001_tables.sql"
+      ]
+    },
+    {
+      "label": "Semantic model (Direct Lake)",
+      "status": "template",
+      "artifacts": [
+        "fabric/semantic-model/model.bim",
+        "fabric/manifests/serving.json"
+      ]
+    },
+    {
+      "label": "Serve",
+      "status": "cross-cutting-design",
+      "artifacts": [
+        "docs/architecture.md",
+        "governance/access-matrix.csv",
+        "docs/deployment.md"
+      ]
+    },
+    {
+      "label": "Shortcuts",
+      "status": "configuration-contract",
+      "artifacts": [
+        "fabric/connections/shortcuts.md",
+        "fabric/consumer/README.md"
+      ]
+    },
+    {
+      "label": "Snowflake",
+      "status": "code+binding",
+      "artifacts": [
+        "sources/snowflake/setup.sql",
+        "fabric/connections/mirroring.md"
+      ]
+    },
+    {
+      "label": "Store",
+      "status": "template+service-managed",
+      "artifacts": [
+        "fabric/manifests/provider.json",
+        "scripts/upload_onelake.py",
+        "docs/architecture.md"
+      ]
+    },
+    {
+      "label": "Stored procedure",
+      "status": "code+template",
+      "artifacts": [
+        "fabric/manifests/provider.json",
+        "fabric/sql/warehouse/001_tables.sql",
+        "fabric/sql/warehouse/002_publish.sql"
+      ]
+    },
+    {
+      "label": "Streaming data",
+      "status": "template+binding",
+      "artifacts": [
+        "fabric/manifests/streaming.json",
+        "fabric/eventstreams/eventstream.json",
+        "fabric/eventstreams/topology.json"
+      ]
+    },
+    {
+      "label": "Structured andsemistructured data",
+      "status": "fixtures+configuration",
+      "artifacts": [
+        "fabric/connections/catalog.json",
+        "data/sample/orders.jsonl",
+        "data/sample/telemetry.jsonl"
+      ]
+    },
+    {
+      "label": "Workspace monitoring",
+      "status": "configuration-contract",
+      "artifacts": [
+        "monitoring/README.md",
+        "monitoring/alerts.json"
+      ]
+    }
+  ]
+}

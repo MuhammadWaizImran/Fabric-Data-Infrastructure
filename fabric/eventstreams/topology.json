@@ -1,0 +1,15 @@
+{
+  "artifactKind": "complete-architecture-binding-contract",
+  "eventstream": "telemetry_ingestion",
+  "sources": [
+    {"name": "Azure Event Hubs", "binding": "EVENTHUB_CONNECTION_ID", "mode": "REST-template"},
+    {"name": "IoT Hub", "binding": "IOTHUB_CONNECTION_ID", "mode": "tenant-authoring"},
+    {"name": "AWS Kinesis", "binding": "KINESIS_CONNECTION_ID", "mode": "tenant-authoring"},
+    {"name": "Google Cloud Pub/Sub", "binding": "PUBSUB_CONNECTION_ID", "mode": "tenant-authoring"}
+  ],
+  "destinations": [
+    {"name": "Lakehouse", "table": "bronze_telemetry", "mode": "REST-template"},
+    {"name": "Eventhouse", "database": "telemetry", "table": "Telemetry", "mapping": "TelemetryJson", "mode": "tenant-authoring"}
+  ],
+  "consumerTenantEventstream": {"name": "consumer_events", "mode": "tenant-authoring", "purpose": "Consumer-owned incoming events; an external OneLake share does not automatically stream events across tenants."}
+}

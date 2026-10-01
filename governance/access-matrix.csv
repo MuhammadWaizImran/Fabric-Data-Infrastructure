@@ -1,0 +1,8 @@
+persona,azure_scope,fabric_provider,fabric_consumer,data_access
+platform_admin,Resource management within analytics RG,Fabric admin via tenant delegation,None unless explicitly assigned,Administrative access audited
+data_engineer,Source read roles and chosen workload identity,Contributor in engineering workspace,Contributor only if assigned,Bronze Silver Gold for assigned domains
+bi_author,None,Contributor in reporting workspace,Contributor in consumer reporting workspace,Approved Gold and semantic models
+bi_viewer,None,Viewer/report permissions,Viewer/report permissions,Authorized semantic-model rows only
+external_consumer,None,No provider workspace role,Consumer-local permissions,Only explicitly shared tables/files
+stream_producer,Azure Event Hubs Data Sender on telemetry,None,None,Send only
+stream_consumer,Azure Event Hubs Data Receiver on telemetry,Connection-scoped ingest identity,None,Receive only

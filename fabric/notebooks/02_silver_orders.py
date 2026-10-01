@@ -1,0 +1,25 @@
+from pyspark.sql import functions as F, Window
+
+spark.conf.set("spark.sql.session.timeZone", "UTC")
+spark.conf.set("spark.sql.ansi.enabled", "false")  # Invalid casts become null and are quarantined.
+raw = spark.read.format("delta").load(lakehouse_root + "/Tables/bronze_orders")
+parsed = (raw.withColumn("order_ts", F.to_timestamp("order_date"))
+    .withColumn("update_ts", F.to_timestamp("updated_at"))
+    .withColumn("price", F.col("unit_price").cast("decimal(18,2)")))
+valid = (F.col("order_id").isNotNull() & (F.length(F.trim("order_id")) > 0)
+    & F.col("customer_id").isNotNull() & (F.length(F.trim("customer_id")) > 0)
+    & F.col("product_id").isNotNull() & (F.length(F.trim("product_id")) > 0)
+    & F.col("order_ts").isNotNull() & F.col("update_ts").isNotNull()
+    & F.col("order_date").rlike(r"(Z|[+-]\d{2}:\d{2})$")
+    & F.col("updated_at").rlike(r"(Z|[+-]\d{2}:\d{2})$")
+    & (F.col("quantity") > 0) & (F.col("price") >= 0)
+    & (F.col("currency") == "USD") & F.col("_corrupt_record").isNull())
+checked = parsed.withColumn("is_valid", F.coalesce(valid, F.lit(False)))
+checked.filter(~F.col("is_valid")).write.format("delta").mode("overwrite").save(lakehouse_root + "/Tables/quarantine_orders")
+business_columns = ["order_id", "customer_id", "product_id", "order_date", "updated_at", "quantity", "unit_price", "currency"]
+good = checked.filter("is_valid").withColumn("tie_break", F.to_json(F.struct(*business_columns)))
+window = Window.partitionBy("order_id").orderBy(F.col("update_ts").desc(), F.col("tie_break").desc())
+silver = (good.withColumn("rank", F.row_number().over(window)).filter("rank = 1")
+    .withColumn("date", F.to_date("order_ts"))
+    .withColumn("revenue", (F.col("price") * F.col("quantity")).cast("decimal(18,2)")))
+silver.select(*business_columns, "date", "revenue").write.format("delta").mode("overwrite").save(lakehouse_root + "/Tables/silver_orders")

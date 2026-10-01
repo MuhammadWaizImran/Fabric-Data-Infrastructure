@@ -1,0 +1,29 @@
+name: Validate repository (no deployment)
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  offline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - run: python scripts/build_definitions.py
+      - run: python scripts/validate_repo.py
+      - run: python -m unittest discover -s tests -v
+      - run: python scripts/local_demo.py
+      - run: git diff --exit-code -- fabric/definitions fabric/manifests/provider.json fabric/manifests/consumer.json
+  bicep:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: az bicep install --version v0.47.16
+      - run: mkdir -p build
+      - run: az bicep build --file infra/azure/main.bicep --outfile build/main.json
+      - run: az bicep build --file infra/azure/network.bicep --outfile build/network.json
+      - run: az bicep build --file infra/azure/policy.bicep --outfile build/policy.json

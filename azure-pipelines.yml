@@ -1,0 +1,24 @@
+trigger:
+  - main
+pool:
+  vmImage: ubuntu-latest
+steps:
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.10'
+  - script: python scripts/build_definitions.py
+    displayName: Build Fabric definitions locally
+  - script: python scripts/validate_repo.py
+    displayName: Validate architecture coverage and files
+  - script: python -m unittest discover -s tests -v
+    displayName: Test offline behavior
+  - script: python scripts/local_demo.py
+    displayName: Run local sample
+  - script: |
+      az bicep install --version v0.47.16
+      mkdir -p build
+      az bicep build --file infra/azure/main.bicep --outfile build/main.json
+      az bicep build --file infra/azure/network.bicep --outfile build/network.json
+      az bicep build --file infra/azure/policy.bicep --outfile build/policy.json
+    displayName: Compile infrastructure (no Azure login)
+# No service connection and no deploy stage. Choose GitHub OR Azure DevOps for delivery.

@@ -1,0 +1,3 @@
+{
+  "analyzers": {"core": {"enabled": true, "rules": {"no-unused-params": {"level": "warning"}, "secure-parameter-default": {"level": "error"}}}}
+}

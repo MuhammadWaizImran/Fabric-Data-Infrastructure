@@ -1,0 +1,7 @@
+{
+  "name": "Azure Analytics",
+  "dataColors": ["#0078D4", "#00B7C3", "#8764B8", "#FFB900", "#107C10", "#D13438"],
+  "background": "#FFFFFF",
+  "foreground": "#242424",
+  "tableAccent": "#0078D4"
+}

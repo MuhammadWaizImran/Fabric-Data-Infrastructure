@@ -1,0 +1,18 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
+type: command
+display_name: telemetry-anomaly-training
+experiment_name: telemetry-anomalies
+code: .
+command: python train.py --input ${{inputs.telemetry}} --output ${{outputs.model}}
+inputs:
+  telemetry:
+    type: uri_file
+    path: ../build/telemetry.jsonl
+outputs:
+  model:
+    type: uri_folder
+environment:
+  image: mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu22.04:latest
+  conda_file: environment.yml
+compute: azureml:analytics-cpu
+# Environment image digest and dependency lock must be pinned for a production release.

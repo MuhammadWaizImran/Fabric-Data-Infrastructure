@@ -1,0 +1,12 @@
+// Execute commands separately in the provider Eventhouse KQL database.
+.create-merge table Telemetry (event_id:string, device_id:string, event_time:datetime, temperature_c:real, vibration_mm_s:real, schema_version:int)
+
+.create-or-alter table Telemetry ingestion json mapping 'TelemetryJson' '[{"column":"event_id","path":"$.event_id"},{"column":"device_id","path":"$.device_id"},{"column":"event_time","path":"$.event_time"},{"column":"temperature_c","path":"$.temperature_c"},{"column":"vibration_mm_s","path":"$.vibration_mm_s"},{"column":"schema_version","path":"$.schema_version"}]'
+
+.alter-merge table Telemetry policy retention softdelete = 30d
+
+.create-or-alter function with (folder='Analytics', docstring='Deduplicate replayed events by stable event ID') TelemetryLatest() {
+    Telemetry
+    | where isnotempty(event_id) and isnotempty(device_id) and schema_version == 1
+    | summarize arg_max(event_time, *) by event_id
+}

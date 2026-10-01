@@ -1,0 +1,24 @@
+{
+  "compatibilityLevel": 1604,
+  "model": {
+    "culture": "en-US",
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "expressions": [{"name": "DatabaseQuery", "kind": "m", "expression": "let Source = Sql.Database(\"{{SQL_ENDPOINT}}\", \"{{SQL_DATABASE}}\") in Source"}],
+    "tables": [{
+      "name": "Daily Sales",
+      "columns": [
+        {"name": "Date", "dataType": "dateTime", "sourceColumn": "date", "summarizeBy": "none"},
+        {"name": "Currency", "dataType": "string", "sourceColumn": "currency", "summarizeBy": "none"},
+        {"name": "Orders", "dataType": "int64", "sourceColumn": "orders"},
+        {"name": "Quantity", "dataType": "int64", "sourceColumn": "quantity"},
+        {"name": "Revenue", "dataType": "decimal", "sourceColumn": "revenue"}
+      ],
+      "measures": [
+        {"name": "Revenue USD", "expression": "SUM('Daily Sales'[Revenue])", "formatString": "$#,0.00"},
+        {"name": "Order Count", "expression": "SUM('Daily Sales'[Orders])", "formatString": "#,0"},
+        {"name": "Average Order Value", "expression": "DIVIDE([Revenue USD], [Order Count])", "formatString": "$#,0.00"}
+      ],
+      "partitions": [{"name": "DailySales", "mode": "directLake", "source": {"type": "entity", "entityName": "gold_daily_sales", "schemaName": "dbo", "expressionSource": "DatabaseQuery"}}]
+    }]
+  }
+}

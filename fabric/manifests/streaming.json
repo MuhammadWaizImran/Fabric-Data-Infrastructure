@@ -1,0 +1,7 @@
+{
+  "scope": "provider-after-source-connection",
+  "items": [{"name": "telemetry_ingestion", "type": "Eventstream", "idBinding": "EVENTSTREAM_ID", "parts": [
+    {"path": "eventstream.json", "source": "fabric/eventstreams/eventstream.json"},
+    {"path": "eventstreamProperties.json", "source": "fabric/eventstreams/eventstreamProperties.json"}
+  ]}]
+}

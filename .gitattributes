@@ -1,0 +1,7 @@
+* text=auto eol=lf
+*.py text eol=lf
+*.json text eol=lf
+*.sql text eol=lf
+*.kql text eol=lf
+*.bicep text eol=lf
+*.svg binary

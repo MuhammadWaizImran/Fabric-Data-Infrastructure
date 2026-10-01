@@ -1,0 +1,19 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "prefix": {"value": "analytics"},
+    "environment": {"value": "dev"},
+    "location": {"value": "eastus2"},
+    "fabricLocation": {"value": "eastus2"},
+    "fabricSku": {"value": "F2"},
+    "fabricAdministrators": {"value": ["REPLACE_WITH_ADMIN_UPN"]},
+    "operatorObjectId": {"value": "REPLACE_WITH_ENTRA_OBJECT_ID"},
+    "sqlAdministratorPassword": {"reference": {"keyVault": {"id": "REPLACE_WITH_EXISTING_BOOTSTRAP_VAULT_RESOURCE_ID"}, "secretName": "sql-admin-password"}},
+    "postgresAdministratorPassword": {"reference": {"keyVault": {"id": "REPLACE_WITH_EXISTING_BOOTSTRAP_VAULT_RESOURCE_ID"}, "secretName": "postgres-admin-password"}},
+    "monthlyBudget": {"value": 250},
+    "budgetStartDate": {"value": "REPLACE_WITH_FIRST_DAY_OF_DEPLOYMENT_MONTH_UTC"},
+    "budgetEndDate": {"value": "REPLACE_WITH_FUTURE_FIRST_DAY_UTC"},
+    "budgetContactEmails": {"value": []}
+  }
+}

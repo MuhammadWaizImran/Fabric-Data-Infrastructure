@@ -1,0 +1,2 @@
+{"event_id":"E001","device_id":"D01","event_time":"2026-09-01T10:00:00Z","temperature_c":30.5,"vibration_mm_s":1.2,"schema_version":1}
+{"event_id":"E002","device_id":"D02","event_time":"2026-09-01T10:00:01Z","temperature_c":88.0,"vibration_mm_s":7.8,"schema_version":1}

@@ -1,0 +1,9 @@
+{
+  "artifactKind": "authoring-specification-not-native-dashboard-definition",
+  "name": "Telemetry Operations",
+  "source": {"workspace": "provider", "eventhouse": "analytics_eventhouse", "database": "telemetry"},
+  "refreshSeconds": 30,
+  "tiles": ["Event and device counts", "Temperature timechart", "Threshold breaches", "Event freshness"],
+  "queryFile": "fabric/kql/002_dashboard_queries.kql",
+  "validation": "Run the producer with --send for current event timestamps; static September fixtures do not appear in last-hour tiles."
+}

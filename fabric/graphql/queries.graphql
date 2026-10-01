@@ -1,0 +1,7 @@
+# Select only governed Gold/serving objects when creating the Fabric API for GraphQL.
+# Generated entity names may differ: introspect the deployed schema before use.
+query DailySales {
+  gold_daily_sales(first: 30) {
+    items { date currency orders quantity revenue }
+  }
+}

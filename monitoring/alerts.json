@@ -1,0 +1,10 @@
+{
+  "artifactKind":"monitoring-requirements-not-Azure-ARM",
+  "alerts":[
+    {"name":"Pipeline failure","source":"Fabric monitoring hub/workspace monitoring","condition":"Any failed scheduled production run","action":"Notify assigned operator"},
+    {"name":"Stream freshness","source":"Eventhouse KQL","condition":"LagSeconds > agreed SLO for two consecutive checks","action":"Inspect producer, source and ingestion"},
+    {"name":"Quarantine growth","source":"Lakehouse quality metrics","condition":"Rejected fraction exceeds agreed baseline","action":"Quarantine and stop downstream publication when required"},
+    {"name":"Capacity pressure","source":"Fabric Capacity Metrics","condition":"Sustained throttling or exceeded workload budget","action":"Reschedule or size after measurement"},
+    {"name":"Cost budget","source":"Azure Cost Management","condition":"Actual spend at 80 percent","action":"Budget email; this does not stop resources"}
+  ]
+}

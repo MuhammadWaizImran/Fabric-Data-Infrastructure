@@ -1,0 +1,13 @@
+{
+  "scope": "provider-serving-after-gold",
+  "items": [{
+    "name": "analytics_sales_model",
+    "type": "SemanticModel",
+    "idBinding": "SEMANTIC_MODEL_ID",
+    "format": "TMSL",
+    "parts": [
+      {"path": "model.bim", "source": "fabric/semantic-model/model.bim"},
+      {"path": "definition.pbism", "source": "fabric/semantic-model/definition.pbism"}
+    ]
+  }]
+}

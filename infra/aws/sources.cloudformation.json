@@ -1,0 +1,16 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Optional AWS S3 and Kinesis source branch; no resources are deployed by repo validation.",
+  "Resources": {
+    "SourceBucket": {"Type": "AWS::S3::Bucket", "DeletionPolicy": "Retain", "UpdateReplacePolicy": "Retain", "Properties": {
+      "PublicAccessBlockConfiguration": {"BlockPublicAcls": true, "BlockPublicPolicy": true, "IgnorePublicAcls": true, "RestrictPublicBuckets": true},
+      "BucketEncryption": {"ServerSideEncryptionConfiguration": [{"ServerSideEncryptionByDefault": {"SSEAlgorithm": "AES256"}}]},
+      "VersioningConfiguration": {"Status": "Enabled"}
+    }},
+    "TelemetryStream": {"Type": "AWS::Kinesis::Stream", "Properties": {"RetentionPeriodHours": 24, "StreamModeDetails": {"StreamMode": "ON_DEMAND"}, "StreamEncryption": {"EncryptionType": "KMS", "KeyId": "alias/aws/kinesis"}}}
+  },
+  "Outputs": {
+    "BucketName": {"Value": {"Ref": "SourceBucket"}},
+    "StreamArn": {"Value": {"Fn::GetAtt": ["TelemetryStream", "Arn"]}}
+  }
+}

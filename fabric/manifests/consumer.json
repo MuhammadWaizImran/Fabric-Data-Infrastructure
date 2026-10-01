@@ -1,0 +1,44 @@
+{
+  "scope": "consumer",
+  "items": [
+    {
+      "name": "shared_analytics",
+      "type": "Lakehouse",
+      "idBinding": "CONSUMER_LAKEHOUSE_ID"
+    },
+    {
+      "name": "consumer_warehouse",
+      "type": "Warehouse",
+      "idBinding": "CONSUMER_WAREHOUSE_ID"
+    },
+    {
+      "name": "consumer_operations",
+      "type": "SQLDatabase",
+      "idBinding": "CONSUMER_SQL_DATABASE_ID"
+    },
+    {
+      "name": "consumer_eventhouse",
+      "type": "Eventhouse",
+      "idBinding": "CONSUMER_EVENTHOUSE_ID"
+    },
+    {
+      "name": "consumer_telemetry",
+      "type": "KQLDatabase",
+      "creationPayload": {
+        "databaseType": "ReadWrite",
+        "parentEventhouseItemId": "{{CONSUMER_EVENTHOUSE_ID}}"
+      }
+    },
+    {
+      "name": "read_shared_sales",
+      "type": "Notebook",
+      "format": "ipynb",
+      "parts": [
+        {
+          "path": "artifact.content.ipynb",
+          "source": "fabric/definitions/consumer/read_shared_sales.ipynb"
+        }
+      ]
+    }
+  ]
+}

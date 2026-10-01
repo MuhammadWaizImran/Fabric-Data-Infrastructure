@@ -1,0 +1,8 @@
+$schema: https://azuremlschemas.azureedge.net/latest/amlCompute.schema.json
+name: analytics-cpu
+type: amlcompute
+size: Standard_DS3_v2
+min_instances: 0
+max_instances: 1
+idle_time_before_scale_down: 120
+# Choose a quota-approved SKU and network settings before creation. Not provisioned by main.bicep.

@@ -1,0 +1,22 @@
+// Tile: events in the last 15 minutes
+TelemetryLatest()
+| where event_time > ago(15m)
+| summarize Events=count(), Devices=dcount(device_id)
+
+// Tile: average temperature by minute
+TelemetryLatest()
+| where event_time > ago(1h)
+| summarize AverageTemperature=avg(temperature_c) by bin(event_time, 1m), device_id
+| render timechart
+
+// Tile: thresholds (illustrative values, not a trained model)
+TelemetryLatest()
+| where event_time > ago(1h)
+| where temperature_c > 80 or vibration_mm_s > 7
+| project event_time, device_id, temperature_c, vibration_mm_s
+| order by event_time desc
+
+// Tile: freshness
+Telemetry
+| summarize LastEvent=max(event_time)
+| extend LagSeconds=datetime_diff('second', now(), LastEvent)

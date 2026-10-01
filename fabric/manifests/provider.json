@@ -1,0 +1,93 @@
+{
+  "scope": "provider",
+  "items": [
+    {
+      "name": "analytics_lakehouse",
+      "type": "Lakehouse",
+      "idBinding": "LAKEHOUSE_ID"
+    },
+    {
+      "name": "analytics_warehouse",
+      "type": "Warehouse",
+      "idBinding": "WAREHOUSE_ID"
+    },
+    {
+      "name": "analytics_operations",
+      "type": "SQLDatabase",
+      "idBinding": "SQL_DATABASE_ID"
+    },
+    {
+      "name": "analytics_eventhouse",
+      "type": "Eventhouse",
+      "idBinding": "EVENTHOUSE_ID"
+    },
+    {
+      "name": "telemetry",
+      "type": "KQLDatabase",
+      "idBinding": "KQL_DATABASE_ID",
+      "creationPayload": {
+        "databaseType": "ReadWrite",
+        "parentEventhouseItemId": "{{EVENTHOUSE_ID}}"
+      }
+    },
+    {
+      "name": "01_bronze_orders",
+      "type": "Notebook",
+      "idBinding": "NOTEBOOK_1_ID",
+      "format": "ipynb",
+      "parts": [
+        {
+          "path": "artifact.content.ipynb",
+          "source": "fabric/definitions/notebooks/01_bronze_orders.ipynb"
+        }
+      ]
+    },
+    {
+      "name": "02_silver_orders",
+      "type": "Notebook",
+      "idBinding": "NOTEBOOK_2_ID",
+      "format": "ipynb",
+      "parts": [
+        {
+          "path": "artifact.content.ipynb",
+          "source": "fabric/definitions/notebooks/02_silver_orders.ipynb"
+        }
+      ]
+    },
+    {
+      "name": "03_gold_sales",
+      "type": "Notebook",
+      "idBinding": "NOTEBOOK_3_ID",
+      "format": "ipynb",
+      "parts": [
+        {
+          "path": "artifact.content.ipynb",
+          "source": "fabric/definitions/notebooks/03_gold_sales.ipynb"
+        }
+      ]
+    },
+    {
+      "name": "04_ml_telemetry",
+      "type": "Notebook",
+      "idBinding": "NOTEBOOK_4_ID",
+      "format": "ipynb",
+      "parts": [
+        {
+          "path": "artifact.content.ipynb",
+          "source": "fabric/definitions/notebooks/04_ml_telemetry.ipynb"
+        }
+      ]
+    },
+    {
+      "name": "orders_end_to_end",
+      "type": "DataPipeline",
+      "idBinding": "ORDERS_PIPELINE_ID",
+      "parts": [
+        {
+          "path": "pipeline-content.json",
+          "source": "fabric/definitions/pipelines/orders.json"
+        }
+      ]
+    }
+  ]
+}
