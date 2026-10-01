@@ -2,6 +2,11 @@
 
 Repository blueprint for the **supplied `azure-analytics-end-to-end.svg` architecture**.
 The original diagram is preserved in [docs/architecture](docs/architecture/azure-analytics-end-to-end.svg).
+
+![Original Azure and Microsoft Fabric end-to-end architecture](docs/architecture/azure-analytics-end-to-end.svg)
+
+[Open the original architecture diagram at full size](docs/architecture/azure-analytics-end-to-end.svg).
+
 All 66 unique diagram labels are mapped to repository artifacts in
 [coverage.md](docs/coverage.md), including the multicloud sources and consumer tenant.
 
